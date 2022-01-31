@@ -2,10 +2,11 @@ let map, infoWindow
 let flags = 0
 let markers = []
 let markerarr = []
-let myLatlng = {lat:10.821637414566116,long:106.68801536900568}
+var coordinates;
 setInterval(() => {
-  placeMarkerAndPanTo(myLatlng,map)
-}, 5000);
+  placeMarkerAndPanTo(coordinates,map)
+}, 2000);
+
 function initMap() {
   var location = httpGet("/location")
   var obj = JSON.parse(location)
@@ -25,7 +26,7 @@ function initMap() {
   setTimeout(function (){
     infoWindow.close()
   },3000)
-
+  coordinates = myLatlng
   //infoWindow.open(map);
   // Configure the click listener.
   map.addListener("click", (mapsMouseEvent) => {

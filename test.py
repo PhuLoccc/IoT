@@ -159,8 +159,8 @@ def direction_lookup_modify(source,destination):
     deltaY = destination_y - origin_y
     degrees_temp = math.atan2(deltaX, deltaY)/math.pi*180
     return degrees_temp
-source = {"lat":16.972009463488703,"long":119.0328872104596}
-destination = {"lat":15.88611214832158,"long":107.2731199761342}
+source = {"lat":10.523394737470575,"long":106.61131771246664}
+destination = {"lat":10.505132837063009,"long":108.00493333454006}
 #latitude = Y
 #longitude = X
 print(direction_lookup_modify(source,destination))
