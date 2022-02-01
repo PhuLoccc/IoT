@@ -2,8 +2,8 @@ import math
 #convert coordinates to digital signals 
 def getGreaterExchange_Rate(source,destination):
     latitude_subtraction = abs(destination["lat"]) - abs(source["lat"])
-    longitude_subtraction = abs(destination["long"]) - abs(source["long"])
-    return "long" if longitude_subtraction > latitude_subtraction else "lat"
+    longitude_subtraction = abs(destination["lng"]) - abs(source["lng"])
+    return "lng" if abs(longitude_subtraction) > abs(latitude_subtraction) else "lat"
 
 def direction_lookup_modify(source,destination):
     #based on (x,y) if source[x] > destination[x] we assign sour[x] = 1 and des[x] = 0
@@ -11,8 +11,8 @@ def direction_lookup_modify(source,destination):
     #Get which coordinates is greater between longitude and latitude
     selection = getGreaterExchange_Rate(source,destination)
     #initialize source and destination
-    if selection == "long":
-        if source["long"] > destination["long"]:
+    if selection == "lng":
+        if source["lng"] > destination["lng"]:
             destination_x = 0
             origin_x = 1
         else:
@@ -35,13 +35,12 @@ def direction_lookup_modify(source,destination):
     deltaY = destination_y - origin_y
     degrees_temp = math.atan2(deltaX, deltaY)/math.pi*180
     return degrees_temp
-
 def get_instructions(markers):
     instructions = []
     for index in range(0,len(markers)-1):
-        if index != len(markers - 1):
+        if index != len(markers) - 1:
             direction = direction_lookup_modify(markers[index],markers[index + 1])
-            source = {"lat":markers[index]["lat"],"long":markers[index]["long"]}
-            des = {"lat":markers[index+1]["lat"],"long":markers[index+1]["long"]}
-            instructions.append({"source":source,"des":des,direction:direction})
+            source = {"lat":markers[index]["lat"],"lng":markers[index]["lng"]}
+            des = {"lat":markers[index+1]["lat"],"lng":markers[index+1]["lng"]}
+            instructions.append({"source":source,"des":des,"direction":direction})
     return instructions
