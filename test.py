@@ -37,21 +37,21 @@ from turtle import back
 #             backtracking(index+1)
 # backtracking(0)
 
-# def direction_lookup(destination_x, origin_x, destination_y, origin_y):
+def direction_lookup(destination_x, origin_x, destination_y, origin_y):
 
-#     deltaX = destination_x - origin_x
+    deltaX = destination_x - origin_x
 
-#     deltaY = destination_y - origin_y
+    deltaY = destination_y - origin_y
 
-#     degrees_temp = math.atan2(deltaX, deltaY)/math.pi*180
+    degrees_temp = math.atan2(deltaX, deltaY)/math.pi*180
 
-#     # if degrees_temp < 0:
+    # if degrees_temp < 0:
 
-#     #     degrees_final = 360 + degrees_temp
-#     # else:
+    #     degrees_final = 360 + degrees_temp
+    # else:
 
-#     #     degrees_final = degrees_temp
-#     return degrees_temp
+    #     degrees_final = degrees_temp
+    return degrees_temp
 # def get_direction(destination_x, origin_x, destination_y, origin_y):
 #     deltaX = destination_x - origin_x
 

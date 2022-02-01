@@ -4,7 +4,6 @@ let markers = []
 let markerarr = []
 var coordinates;
 
-
 function initMap() {
   var location = httpGet("/location")
   var obj = JSON.parse(location)
@@ -41,6 +40,7 @@ function initMap() {
     placeMarkerAndPanTo(mapsMouseEvent.latLng,map);
     appendMarkers(mapsMouseEvent.latLng.toJSON());
   });
+  console.log(map)
 }
 function placeMarkerAndPanTo(latLng, map) {
   var marker = new google.maps.Marker({
