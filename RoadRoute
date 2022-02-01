@@ -35,3 +35,13 @@ def direction_lookup_modify(source,destination):
     deltaY = destination_y - origin_y
     degrees_temp = math.atan2(deltaX, deltaY)/math.pi*180
     return degrees_temp
+
+def get_instructions(markers):
+    instructions = []
+    for index in range(0,len(markers)-1):
+        if index != len(markers - 1):
+            direction = direction_lookup_modify(markers[index],markers[index + 1])
+            source = {"lat":markers[index]["lat"],"long":markers[index]["long"]}
+            des = {"lat":markers[index+1]["lat"],"long":markers[index+1]["long"]}
+            instructions.append({"source":source,"des":des,direction:direction})
+    return instructions

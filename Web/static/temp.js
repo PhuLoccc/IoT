@@ -3,9 +3,7 @@ let flags = 0
 let markers = []
 let markerarr = []
 var coordinates;
-setInterval(() => {
-  placeMarkerAndPanTo(coordinates,map)
-}, 2000);
+
 
 function initMap() {
   var location = httpGet("/location")
@@ -89,7 +87,7 @@ function appendMarkers(latLng)
   markers.push(latLng);
 }
 document.getElementById("submit").addEventListener("click", function (e){
-    var result = httpPost("/caculate",markers);
+    var result = httpPost("/submit",markers);
     console.log(result)
 })
 

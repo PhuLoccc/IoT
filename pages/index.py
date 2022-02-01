@@ -1,7 +1,9 @@
-from flask import Blueprint, jsonify,render_template,redirect,request
+from flask import Blueprint, jsonify,render_template,redirect,request, request_finished
 import json
 import sys
 sys.path.append("/")
+#define global variable to save data 
+data = []
 index = Blueprint(__name__, "index")
 @index.route("/")
 def home():
@@ -12,20 +14,19 @@ def locate():
     import GetGeoLocationFromAPI
     currentlocation = GetGeoLocationFromAPI.getGeo()
     return jsonify(currentlocation)
-# @index.route("/Latitude")
-# def Latitude():
-#      import geocoder
-#      g = geocoder.ip('me')
-#      return str(g.latlng[0])
-# @index.route("/Longtitude")
-# def Longtitude():
-#      import geocoder
-#      g = geocoder.ip('me')
-#      return str(g.latlng[1])
-@index.route("/caculate",methods = ["POST"])
-def calculate():
-    import Caculate
+@index.route("/submit",methods = ["POST"])
+def submit():
     if request.method == "POST":
-        arr = json.loads(request.get_data(as_text=True)["value"])
-        print(json.loads(request.get_data(as_text=True)["value"]))
-    return "Hehehe"
+        
+        markers = json.loads(request.get_data(as_text=True))["value"]
+        instructions = 
+        return "OK"
+@index.route("/car")
+def car():
+    global data
+    if len(data) == 0:
+        return "OK"
+    return jsonify(data)
+  
+
+
