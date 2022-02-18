@@ -30,6 +30,6 @@ def car():
     return jsonify(instructions)
 @index.route("/test")
 def test():
-    return redirect("/")
+    return "OK"
 
 
