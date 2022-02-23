@@ -1,6 +1,7 @@
 #define ENB   D6          // Enable/speed motors Left         GPIO12(D6)
 #define IN_3  D4          // L298N in3 motors Left            GPIO2(D4)
-#define IN_4  D3          // L298N in4 motors Left            GPIO0(D3)
+#define IN_4  D0          // L298N in4 motors Left            GPIO0(D3)
+#define FLASH D3
 #define SERVO D5
 #define EMERGENCY_REDLED D7
 #define EMERGENCY_GREENLED D8
@@ -38,6 +39,10 @@ void setupEmergencyLed()
 void setupHTTPClient() {
   WiFi.mode(WIFI_STA);
   WiFiMulti.addAP(ssid, password);
+}
+void setupFlashButton() //to restart heading when the car is moved
+{
+  pinMode(FLASH, INPUT_PULLUP);
 }
 void setupOriginHeading()
 {
@@ -493,4 +498,10 @@ void loop()
 {
   emergencyLedProcessing();
   manual_processing2();
+  if(digitalRead(FLASH) == LOW)
+  {
+    Serial.print("Button is pressed");
+    setupOriginHeading();
+    setupServo();
+  }
 }

@@ -5,16 +5,24 @@
     <link rel="stylesheet" type="text/css" href="../static/style.css" />
   </head>
   <body>
-    <div id="map"></div>
-    <div id="markers"></div>
+    <div id="map" style="margin: 0 auto;"></div>
+    </div>
+    <!-- <div id="markers"></div>
     <button id = "submit">Begin</button>
-    <button id = "del">DeleteMarker</button>
-    
+    <button id = "del">DeleteMarker</button> -->
+    <div id="controller" style="text-align:center; margin:10px;">
+      <button id ="F">FOWARD</button></br>
+      <button id ="L">TURN LEFT</button>
+      <button id ="S">STOP</button>
+      <button id ="R">TURN RIGHT</button></br>
+      <button id ="B">BACK</button>
+    </div>
     
       
 
     <!-- Async script executes immediately and must be after any DOM elements used in callback. -->
     <script src="../static/temp.js"></script>
+    <script src="../static/manual_control.js"></script>
     <script
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB8DKlqACwhsXV3splf60RvQJQrqQJNb4c&callback=initMap"
       async

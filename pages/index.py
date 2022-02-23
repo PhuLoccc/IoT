@@ -1,9 +1,11 @@
+
 from flask import Blueprint, jsonify,render_template,redirect,request, url_for
 import json
 import sys
 sys.path.append("/")
 #define global variable to save instructions 
 instructions = []
+instruction = []
 index = Blueprint(__name__, "index")
 @index.route("/")
 def home():
@@ -22,6 +24,13 @@ def submit():
         markers = json.loads(request.get_data(as_text=True))["value"]
         instructions = RoadRoute.get_instructions(markers)
     return "OK"
+@index.route("/manual_control",methods = ["POST"])
+def manual_control():
+    global instruction
+    if request.method == "POST":
+        instruction = json.loads(request.get_data(as_text=True))["value"]
+    return "Received manual instruction"
+
 @index.route("/car")
 def car():
     global instructions
@@ -30,6 +39,9 @@ def car():
     return jsonify(instructions)
 @index.route("/test")
 def test():
-    return "OK"
-
+    return "Phu Loc"
+@index.route("/get_instruction")
+def get_instruction():
+    result = instruction
+    return str(result)
 
