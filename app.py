@@ -1,5 +1,5 @@
 import sys
-sys.path.append('pages')
+sys.path.append('View')
 from OpenSSL import SSL
 from flask import Flask, render_template
 from index import index
@@ -8,4 +8,4 @@ app.register_blueprint(index, url_prefix = "/")
 
 if __name__ == "__main__":
      #app.run(host="192.168.1.9", port=5000, ssl_context=('cert.pem', 'key.pem'))
-     app.run(host="192.168.1.9", port=80)
+     app.run(host="172.16.2.23", port=80)
