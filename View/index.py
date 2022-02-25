@@ -2,7 +2,7 @@
 from flask import Blueprint, jsonify,render_template,redirect,request, url_for
 import json
 import sys
-sys.path.append("/")
+sys.path.append("./")
 #define global variable to save instructions 
 instructions = []
 instruction = []

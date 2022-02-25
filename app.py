@@ -1,5 +1,6 @@
 import sys
-sys.path.append('View')
+sys.path.append('./View')
+print(sys.path)
 from OpenSSL import SSL
 from flask import Flask, render_template
 from index import index
