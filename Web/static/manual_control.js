@@ -1,14 +1,3 @@
-console.log("HELLO");
-function httpPost(theUrl,obj)
-{
-  var xhr = new XMLHttpRequest();
-  xhr.open("POST", theUrl, false);
-  xhr.setRequestHeader('Content-Type', 'application/json');
-  xhr.send(JSON.stringify({
-    value: obj
-}));
-  return xhr.responseText
-}
 document.getElementById("F").addEventListener("mousedown",function(){
     var result = httpPost("/manual_control","F");
     console.log(result);
@@ -53,3 +42,19 @@ document.getElementById("B").addEventListener("mouseup",function(){
 //     var result = httpPost("/manual_control","R");
 //     console.log(result);
 // })
+document.getElementById("F").addEventListener("touchstart",function(){
+    var result = httpPost("/manual_control","F");
+    console.log(result);
+})
+document.getElementById("F").addEventListener("touchend",function(){
+    var result = httpPost("/manual_control","S");
+    console.log(result);
+})
+document.getElementById("B").addEventListener("touchstart",function(){
+    var result = httpPost("/manual_control","B");
+    console.log(result);
+})
+document.getElementById("B").addEventListener("touchend",function(){
+    var result = httpPost("/manual_control","S");
+    console.log(result);
+})

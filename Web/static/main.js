@@ -1,32 +1,37 @@
-// function initMap() {
-//     new google.maps.Map(document.getElementById("map"), {
-//       mapId: "7bb341dd6f6bb06",
-//       center: { lat: 10.762622, lng: 106.660172 },
-//       zoom: 150,
-//     });
-//   }
-// Note: This example requires that you consent to location sharing when
-// prompted by your browser. If you see the error "The Geolocation service
-// failed.", it means you probably did not give permission for the browser to
-// locate you.
-let map, infoWindow
-
-function initMap() {
-  var location = httpGet("/location");
-  var obj = JSON.parse(location)
-  map = new google.maps.Map(document.getElementById("map"), {
-    mapId: "7bb341dd6f6bb06",
-    center: { lat: Number(obj.Latitude),lng: Number(obj.Longtitude)},
-    zoom: 10,
-  });
+let map;
+let marker;
+var test = 10;
+function initialMap(){
+ map = L.map('map' ,{
+  center: [0, 0],
+  zoom: 1
+});
+  // L.tileLayer('https://api.maptiler.com/maps/streets/{z}/{x}/{y}.png?key=yllyE2xjroSx8oZFIod0',
+  // {
+  //     attribution:'<a href="https://www.maptiler.com/copyright/" target="_blank">&copy; MapTiler</a> <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>'
+  // }).addTo(map);
+ const tilesURL = 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png';
+ const attribution = '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>';
+ const tiles = L.tileLayer(tilesURL,{attribution});
+ tiles.addTo(map);
+ marker = L.marker([0,0]).addTo(map);
+ marker.setOpacity(0);
 }
-
+initialMap();
+function httpPost(theUrl,obj)
+{
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", theUrl, false);
+  xhr.setRequestHeader('Content-Type', 'application/json');
+  xhr.send(JSON.stringify({
+    value: obj
+}));
+  return xhr.responseText
+}
 function httpGet(theUrl)
 {
     var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+    xmlHttp.open( "GET", theUrl, false ); // true for synchronous request
     xmlHttp.send( null );
     return xmlHttp.responseText;
 }
-  
-///lat: Number(httpGet("/Latitude")) , lng: Number(httpGet("/Longtitude"))

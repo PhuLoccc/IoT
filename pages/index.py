@@ -6,6 +6,7 @@ sys.path.append("/")
 #define global variable to save instructions 
 instructions = []
 instruction = []
+car_location = []
 index = Blueprint(__name__, "index")
 @index.route("/")
 def home():
@@ -42,6 +43,21 @@ def test():
     return "Phu Loc"
 @index.route("/get_instruction")
 def get_instruction():
+    global instruction
     result = instruction
     return str(result)
-
+@index.route("/manually_control")
+def manually_control():
+    return render_template("manual.html")
+@index.route("/car_location",methods = ["POST"])
+def car_location():
+    global car_location
+    if request.method == "POST":
+        car_location = json.loads(request.get_data(as_text=True))["value"]
+    return "Received GPS's Car"
+@index.route("/get_location")
+def get_location():
+    global car_location
+    if type(car_location) != dict:
+        return ""
+    return jsonify(car_location)
